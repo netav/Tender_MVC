@@ -1,0 +1,122 @@
+﻿@using TestTask_TENDER.Models;
+
+@model List<TenderViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+    List<TenderViewModel> viewModels = Model;
+
+}
+
+<style type="text/css">
+    .Card {
+        width: 70%;
+        display: flex;
+        margin: 2px 2px 2px 2px;
+        background: #ccc;
+        padding: 5px;
+        border-bottom-color: brown;
+        border: solid 1px black;
+        float: right;
+    }
+    .NameCard {
+        height: 100px;
+        max-height: 100px;        
+        width: 33%;
+        background: #828ac6;
+        padding: 5px;
+        margin: 2px 2px 2px 2px;
+        border-bottom-color: brown;
+        border: solid 1px black;
+        float: right;
+    }
+    .Filter {
+        width: 100%;
+        background: #d6fa7e;
+        padding: 5px;
+        border-bottom-color: black;
+        border: solid 1px black;
+        float : left;
+    }
+    .FilterCard {
+        width: 28%;
+        display: flex;
+        margin: 2px 2px 2px 2px;
+        background: #ccc;
+        padding: 5px;
+        border-bottom-color: brown;
+        border: solid 1px black;
+        float:left;
+        
+    }
+    
+</style>
+
+<div class="Card">
+    @using (Html.BeginForm("Index", "Home"))
+    {
+        <input type="text" name="SearchText">
+        <input type="submit" class="btn btn-primary" value="Search" />
+    }
+</div>
+
+
+<div id="menu" class="FilterCard">
+    @using (Html.BeginForm("Index", "Home"))
+    {
+    <div class="Filter">
+        @foreach (TenderViewModel tender in viewModels)
+        {
+            foreach (string organ in tender.OrganizedDictionary)
+            {
+
+                <label>@organ</label>
+                <input type="checkbox" name="OrganizerText" value=@organ />
+                <br />
+            }
+            break;
+
+
+        }
+    </div>
+        <div class="Filter">
+            @foreach (TenderViewModel tender in viewModels)
+            {
+                foreach (string types in tender.TypesDictionary)
+                {
+
+                    <label>@types</label>
+                    <input type="checkbox" name="TypeText" value=@types />
+                    <br />
+                }
+                break;
+            }
+        </div>
+        <input type="submit" value="Сортировка / Сброс" />
+        
+    }
+</div>
+        
+    
+        @foreach (TenderViewModel tender in Model)
+        {
+            <div class=" Card">
+                <div class="NameCard">
+                    <p>Номер тендера : @tender.Id </p>
+                    <p>@Html.ActionLink(tender.TenderSubject, "AllInfoTender", "Home", new { Id = tender.Id }, null)</p>
+                    <p>Организатор торгов : @tender.TenderOrganized</p>
+                </div>
+                <div class="NameCard">
+                    <p>Начальная ставка: @tender.initialRate @tender.TenderCurrency</p>
+                </div>
+                <div class=" NameCard">
+                    <p>Прием предложений с:@tender.TenderStartData</p>
+                    <p>Прием предложений до:@tender.TenderEndData</p>
+                </div>
+            </div>
+        }
+  
+    
+
+
+ 

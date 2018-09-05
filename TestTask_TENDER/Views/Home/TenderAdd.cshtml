@@ -1,0 +1,32 @@
+﻿@using TestTask_TENDER.Models;
+
+@model TenderViewModel
+
+
+@{
+    ViewBag.Title = "TenderAdd";
+}
+
+<h2>Add new Tender</h2>
+
+@using (Html.BeginForm("TenderAdd", "Home"))
+{
+    
+        <p>Предмент тендера</p>
+        @Html.TextBox("TenderSubject");
+        <p>Описание тендера</p>
+        @Html.TextBox("TenderDescription");
+        <p>Начальная ставка</p>
+        @Html.TextBox("InitialRate");
+        <p>Tender start </p>
+        <input type="date" />
+        <p>Tender end </p>
+        <input type="date" />
+        <p>Tender status</p>
+        
+    
+
+
+    <input type="submit" , value="Submit" />
+}
+

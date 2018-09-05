@@ -1,0 +1,78 @@
+﻿@using TestTask_TENDER.Models;
+
+@model TenderViewModel
+
+@{
+    ViewBag.Title = "AllInfoTender";
+    TenderViewModel tender = Model;
+}
+
+<h2>All info about tender</h2>
+<style type="text/css">
+    .main {
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction:column;
+        margin: 2px 2px 2px 2px;
+        background: #ccc;
+        padding: 5px;
+        border-bottom-color: brown;
+        border: solid 1px black;
+    }
+    .cardtop{            
+        
+        width :49%;
+        background: #828ac6;
+        padding: 5px;
+        margin: 2px 2px 2px 2px;
+        border-bottom-color: brown;
+        border: solid 1px black;
+        
+    }
+    .top {        
+        width: 100%;
+        display: flex;
+        flex-direction:row;
+        
+        background: #ccc;
+             
+    }
+    .down {
+        width: 98.5%;
+       
+        background: #828ac6;
+        padding: 5px;
+        margin: 2px 2px 2px 2px;
+        border-bottom-color: brown;
+        border: solid 1px black;        
+    }
+</style>
+
+
+<div class=" main">
+    <div class="top">
+        <div class="cardtop">
+            <p>Тендер №:<br /> @tender.Id</p>
+            <p>Предмет тендера:<br />  @tender.TenderSubject</p>
+            <p> Описание тендера:<br />  @tender.TenderDescription</p>
+
+            <p>Класификация:<br />  @tender.TenderClassification</p>
+        </div>
+        <div class="cardtop">
+            <p> статус:<br />  @tender.TenderType</p>
+            <p>Начальная ставка:<br />  @tender.initialRate @tender.TenderCurrency</p>
+        </div>
+    </div>
+    <div class="down">
+        <p>Организатор:<br />  @tender.TenderOrganized</p>
+        <p>EGRPO<br /></p>
+    </div>
+    <div class="down">
+        <p>Дата публикации:<br />  @tender.PublicationDate</p>
+        <p>Прием предложений с:<br />   @tender.TenderStartData по @tender.TenderEndData</p>
+    </div>
+</div>
+
+
+@Html.ActionLink("<-------", "Index")

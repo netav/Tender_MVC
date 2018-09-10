@@ -1,6 +1,6 @@
 ﻿@using TestTask_TENDER.Models;
 
-@model TenderViewModel
+@model List<TenderViewModel>
 
 
 @{
@@ -23,8 +23,12 @@
         <p>Tender end </p>
         <input type="date" />
         <p>Tender status</p>
-        
-    
+        foreach(var tender in Model)
+        {
+
+        }
+
+
 
 
     <input type="submit" , value="Submit" />
